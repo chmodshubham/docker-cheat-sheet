@@ -1,5 +1,16 @@
 # Docker Commands Cheat Sheet
 
+## Table of Contents
+- [Basic Commands](#basic-commands)
+- [Running Containers](#running-containers)
+- [Building and Removing Images](#building-and-removing-images)
+- [Managing Containers](#managing-containers)
+- [Networking and Storage](#networking-and-storage)
+- [Naming and Linking Containers](#naming-and-linking-containers)
+- [Inspection and Execution](#inspection-and-execution)
+- [Handling Permission Denied Error](#handling-permission-denied-error)
+- [Docker Compose and Cleanup](#docker-compose-and-cleanup)
+
 ## Basic Commands
 List running containers.
 ```
@@ -146,4 +157,27 @@ docker compose up
 Remove all unused containers, networks, images, and volumes.
 ```
 docker system prune --volumes
+```
+
+---
+
+## Handling Permission Denied Error
+
+If you get a permission error when stopping a container:
+```
+docker stop <container-id>
+```
+Error:
+
+```bash
+Error response from daemon: cannot stop container: 57ebcb8a1411: permission denied
+```
+
+Run this command to resolve the issue:
+```
+sudo aa-remove-unknown
+```
+Then retry stopping the container:
+```
+docker stop <container-id>
 ```
